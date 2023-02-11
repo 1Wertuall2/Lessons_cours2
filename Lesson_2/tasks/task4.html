@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    body {
+      background: linear-gradient(#edefe2, #dbea8d, #7d825b);
+      padding: 30px 100px 300px 100px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(49, 43, 90);
+    }
+
+    ul {
+      line-height: 1.3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №3</h1>
+  <p>
+    Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5% від загальної вартості).
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    let productPrice = parseFloat(prompt('Вартість товару', '553грн'))
+    let quantityPrice = parseFloat(prompt('Введіть кількість товару', '0'))
+    //2. Знаходимо результат.
+    let totalPrice = productPrice * quantityPrice
+    const taxPercentage = totalPrice * 0.05
+    const totalSum = totalPrice + taxPercentage
+    //3. Виведення результатів.
+    document.write(`
+    <p>
+      Вартість товару - ${productPrice} грн. <br>
+      Кількість товару - ${quantityPrice} шт. <br>
+      Вартість товару без ПДВ - ${totalPrice} грн. <br>
+      ПДВ товару - ${taxPercentage.toFixed(1).replace(/\.0+/, '')} грн. <br>
+      Сума товару з ПДВ - ${totalSum.toFixed(1).replace(/\.0+/, '')} грн. 
+    </p>
+    `)
+  </script>
+</body>
+
+</html>

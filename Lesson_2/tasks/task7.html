@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+  <style>
+    body {
+      background: linear-gradient(#edefe2, #dbea8d, #7d825b);
+      padding: 30px 100px 300px 100px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(49, 43, 90);
+    }
+
+    ul {
+      line-height: 1.3;
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    th,
+    td:first-child {
+      background: greenyellow;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №6</h1>
+  <p>
+    З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару окремо та
+    загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    let firstProductPtice = parseFloat(prompt('Введіть вартість першого товару', '0'))
+    let firstProductAmount = parseFloat(prompt('Введіть кількість першого товару', '0'))
+    let secondProductPtice = parseFloat(prompt('Введіть вартість другого товару', '0'))
+    let secondProductAmount = parseFloat(prompt('Введіть кількість другого товару', '0'))
+    let threeProductPtice = parseFloat(prompt('Введіть вартість третього товару', '0'))
+    let threeProductAmount = parseFloat(prompt('Введіть кількість третього товару', '0'))
+    //2. Знаходимо результат.
+    let firstProductMeaning = firstProductPtice * firstProductAmount
+    let secondProductMeaning = secondProductPtice * secondProductAmount
+    let threeProductMeaning = threeProductPtice * threeProductAmount
+    let totalProductMeaning = firstProductMeaning + secondProductMeaning + threeProductMeaning
+    //3. Виведення результатів.
+    document.write(`
+        <table border="3px">
+          <tr>
+            <th>Товари</th>
+            <th>Вартість(грн)</th>
+            <th>Кількість шт.</th>
+            <th>Сума(грн)</th>
+          </tr>
+          <tr>
+            <th>М"ясо</th>
+            <td>${firstProductPtice}</td>
+            <td>${firstProductAmount}</td>
+            <td>${firstProductMeaning}</td>
+          </tr>
+          <tr>
+            <th>Риба</th>
+            <td>${secondProductPtice}</td>
+            <td>${secondProductAmount}</td>
+            <td>${secondProductMeaning}</td>
+          </tr>
+          <tr>
+            <th>Хліб</th>
+            <td>${threeProductPtice}</td>
+            <td>${threeProductAmount}</td>
+            <td>${threeProductMeaning}</td>
+          </tr>
+          <tr>
+            <th>Загальна сума</th>
+            <td>${totalProductMeaning}</td>
+          </tr>
+        </table>
+      `)
+  </script>
+</body>
+
+</html>

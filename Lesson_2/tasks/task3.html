@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      background: linear-gradient(#edefe2, #dbea8d, #7d825b);
+      padding: 30px 100px 300px 100px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(49, 43, 90);
+    }
+
+    ul {
+      line-height: 1.3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Дано рік народження (дата: 1 січня) та поточний рік. Знайти кількість років.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    let userYear = parseInt(prompt('Введіть рік народження', ''))
+
+    //2. Знаходимо результат.
+    let nowYear = new Date().getFullYear()
+    let userAge = nowYear - userYear
+
+    //3. Виведення результатів.
+    document.write(`
+    <p>
+      Рік народження - ${userYear} <br>
+      Поточний рік - ${nowYear} <br>
+      Кількість років - ${userAge}
+    </p>
+    `)
+  </script>
+</body>
+
+</html>
