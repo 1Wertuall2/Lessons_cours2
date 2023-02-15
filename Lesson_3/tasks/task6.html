@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      padding: 30px 100px;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    ul {
+      line-height: 1.3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №6</h1>
+  <p>
+    З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    const enterWeekDay = parseInt(prompt('Введіть номер дня тижня (від 1 до 7)', ''))
+    const mondayWeekDay = 1
+    const tuesdayWeekDay = 2
+    const wednesdayWeekDay = 3
+    const thursdayWeekDay = 4
+    const fridayWeekDay = 5
+    const saturdayWeekDay = 6
+    const sundayWeekDay = 7
+    //2. Знаходимо результат.
+    if (enterWeekDay === mondayWeekDay)
+        document.write(`
+          <h3>Понеділок</h3>
+        `)
+      else if (enterWeekDay === tuesdayWeekDay)
+        document.write(`
+          <h3>Вівторок</h3>
+        `)
+      else if (enterWeekDay === wednesdayWeekDay)
+        document.write(`
+          <h3>Середа</h3>
+        `)
+      else if (enterWeekDay === thursdayWeekDay)
+        document.write(`
+          <h3>Четвер</h3>
+        `)
+      else if (enterWeekDay === fridayWeekDay)
+        document.write(`
+          <h3>П'ятниця</h3>
+        `)
+      else if (enterWeekDay === saturdayWeekDay)
+        document.write(`
+          <h3>Субота</h3>
+        `)
+      else if (enterWeekDay === sundayWeekDay)
+        document.write(`
+          <h3>Неділя</h3>
+        `)
+      else
+        document.write(`
+          <h3>ПФФФ!!!Ви що не знаєте скільки днів у тижні?</h3>
+        `)
+  </script>
+</body>
+
+</html>
