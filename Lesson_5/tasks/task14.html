@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 14</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(49, 43, 90);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+      margin-bottom: 50px;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 10px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №14</h1>
+  <p>
+    Каса. Користувачу повідомляють суму, яку йому треба сплатити. Користувач поступово вводить суму грошей до тих пір,
+    поки суми не буде достатньо для оплати товарів (кожного разу користувачу повідомляють, яку ще суму потрібно ввести).
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    const productPrice = 5000
+    let sumToPiment = productPrice,
+     enteredAmountMoney
+    alert(`Сума до сплати товару ${sumToPiment} грн`)
+    //2. Знаходимо результат.
+    do {
+      enteredAmountMoney = parseFloat(prompt('Введіть суму грошей для сплати товару', ''))
+      sumToPiment = sumToPiment - enteredAmountMoney
+      if (sumToPiment > 0)
+        alert(`Вам залишилось сплатити ${sumToPiment} грн`)
+      else if (sumToPiment < 0)
+        alert(`Ваша решта ${Math.abs(sumToPiment)} грн`)
+      else
+        alert('Вітаємо, сума сплачена')
+    }
+    while (sumToPiment > 0)
+    //3. Виведення результатів.
+    document.write(`
+      <table border="3px">
+      <tr>
+        <th>Сума товару</th>
+        <td>${productPrice}</td>
+      </tr>
+      <tr>
+        <th>Внесені кошти</th>
+        <td>${enteredAmountMoney}</td>
+      </tr>
+      <tr>
+        <th>Решта</th>
+        <td>${Math.abs(sumToPiment)}</td>
+      </tr>
+    </table>
+    `)
+  </script>
+</body>
+
+</html>

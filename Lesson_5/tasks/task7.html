@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 7</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      margin-left: 15px;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №7</h1>
+  <p>
+    Вивести на екран N абзаців (N вводиться користувачем) за зразком:
+  </p>
+  <img src="../img/image.jpg" alt="">
+  <script>
+    //1. Вводимо необхідні данні.
+    const paragraphUser = parseInt(prompt('Введіть кількість параграфів', '0'))
+    //2. Знаходимо результат.
+    for (let i = 1; i <= paragraphUser; i++) {
+      document.write(`<h3>Заголовок ${i}</h3>`)
+      for (let j = 1; j <= i; j++) {
+        document.write(`<p>Розділ ${i}, Параграф ${j}</p>`)
+      }
+    }
+  </script>
+</body>
+
+</html>

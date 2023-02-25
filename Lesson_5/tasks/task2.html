@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+    form{
+      display: inline-flex;
+      flex-direction: column;
+    }
+    form :not(:last-child){
+      margin-bottom: 5px;
+    }
+    input{
+      padding-left: 10px;
+      margin-left: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Створити 10 елементів для введення цін продуктів.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    const numberProductElements = 10
+    let buildFormEnter = ''
+    //2. Знаходимо результат.
+    for (let i = 1; i <= numberProductElements; i++) {
+      buildFormEnter += `<div class="form-block"><label for="${i}">Product # ${i}</label><input id="${i}" required type="number" name="name" placeholder="Enter Price"></div>`
+    }
+    //3. Виведення результатів.
+    document.write(`<form>${buildFormEnter}</form>`)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 11</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(49, 43, 90);
+    }
+
+    ul {
+      line-height: 1.3;
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №11</h1>
+  <p>
+    Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем числами.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    const minNumEnteredByUser = parseInt(prompt('Введіть мінімальне число!')),
+      maxNumEnteredByUser = parseInt(prompt('Введіть максимальне число!'))
+    let totalSumNum = 0,
+      oddNumCounter = 0
+    //2. Знаходимо результат.
+    for (let counter = minNumEnteredByUser; counter < maxNumEnteredByUser && oddNumCounter < 5; counter++) {
+      if (counter % 2 !== 0) {
+        totalSumNum += counter
+        oddNumCounter++
+      }
+    }
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>
+          </tr>
+          <tr>
+            <th>Мінімальне число</th>
+            <td>${minNumEnteredByUser}</td>
+          </tr>
+          <tr>
+            <th>Максимальне число</th>
+            <td>${maxNumEnteredByUser}</td>
+          </tr>
+          <tr>
+            <th>Загальна сума</th>
+            <td>${totalSumNum}</td>
+          </tr>
+        </table>
+      `)
+  </script>
+</body>
+
+</html>

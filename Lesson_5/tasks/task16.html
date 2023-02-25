@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 16</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(49, 43, 90);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+      margin-bottom: 50px;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 10px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №16</h1>
+  <p>
+    Користувач поступово вводить прибуток магазину за кожен день протягом N тижнів. Знайти загальну величину
+    прибутку та вивести величину прибутку протягом кожного окремого тижня.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    const enterNumberWeeks = parseInt(prompt('Введіть кількість тижнів', ''))
+    let weeklyProfit = 0,
+      totalProfit = 0
+    //2. Знаходимо результат.
+    document.write(`<table border="3px">`)
+    for (let i = 1; i <= enterNumberWeeks; i++) {
+      for (let j = 1; j <= 7; j++) {
+        const oneDayProfit = parseFloat(prompt(`Введіть прибуток за ${j} день ${i} тижня`, ''))
+        weeklyProfit += oneDayProfit
+      }
+      document.write(`<tr><th>Прибуток ${i}-го тижня</th><td>${weeklyProfit} грн</td></tr>`)
+      totalProfit += weeklyProfit
+      weeklyProfit = 0
+    }
+    document.write(`<tr><th>Загальний прибуток</th><td>${totalProfit} грн</td></tr></table>`)
+  </script>
+</body>
+
+</html>
