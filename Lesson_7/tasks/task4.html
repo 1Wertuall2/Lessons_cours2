@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №4</h1>
+  <p>
+    Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість
+    додатних, кількість більших за 100.
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getUserSum(firstNum, secondNum, thirdNum) {
+      let evenNum = 0, addedNum = 0, moreNum = 0
+      for (let i = 0; i < 3; i++) {
+        if (arguments[i] % 2 === 0) evenNum ++
+        if (arguments[i] > 0) addedNum ++
+        if (arguments[i] > 100) moreNum ++
+      }
+      return `Кількість парних -${evenNum}<br> Кількість доданих - ${addedNum}<br> Більших за 100 - ${moreNum}`;
+    }
+    //2. Вводимо необхідні данні.
+    const firstNum = parseFloat(prompt('Введіть перше необхідне вам число'))
+    const secondNum = parseFloat(prompt('Введіть друге необхідне вам число'))
+    const thirdNum = parseFloat(prompt('Введіть третє необхідне вам число',))
+    const outputSumUser = getUserSum(firstNum, secondNum, thirdNum)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Вихідні значення</th>
+          </tr>
+          <tr>
+            <th>Введені значення</th>
+            <td>${firstNum} , ${secondNum} , ${thirdNum}</td>
+          </tr>
+            <th>Обчислені значення</th>
+            <td>${outputSumUser}</td>
+          </tr>
+        </table>  
+      `)
+  </script>
+</body>
+
+</html>

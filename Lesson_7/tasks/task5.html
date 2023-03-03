@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №5</h1>
+  <p>
+    Створити окремі функції, які переводять:
+  </p>
+  <p>
+    1) Сантиметри у дюйми; <br>
+    2) Кілограми у фунти; <br>
+    3) Кілометри у милі.
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getUserSantSum(enterSantNum) {
+      return enterSantNum * 0.393701
+    }
+    function getUserKilogramSum(enterKilogramNum) {
+      return enterKilogramNum / 0.45359237
+    }
+    function getUserKilometerSum(enterKilometerNum) {
+      return enterKilometerNum * 0.621371
+    }
+    //2. Вводимо необхідні данні.
+    const enterSantNum = parseFloat(prompt('Введіть довжину у сантиметрах', '0'))
+    const enterKilogramNum = parseFloat(prompt('Введіть вагу у кілограмах', '0'))
+    const enterKilometerNum = parseFloat(prompt('Введіть довжину у кілометрах', '0'))
+    const outputInchesNum = getUserSantSum(enterSantNum)
+    const outputPoundsNum = getUserKilogramSum(enterKilogramNum)
+    const outputMilesNum = getUserKilometerSum(enterKilometerNum)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Введені значення</th>
+            <th>Вихідні значення</th>
+          </tr>
+          <tr>
+            <th>Довжина</th>
+            <td>${enterSantNum}-см</td>
+            <td>${outputInchesNum.toFixed(2).replace(/\.0+/, '')}-inch</td>
+          </tr>
+          <tr>
+            <th>Вага</th>
+            <td>${enterKilogramNum}-кг</td>
+            <td>${outputPoundsNum.toFixed(2).replace(/\.0+/, '')}-lb</td>
+          </tr>
+          <tr>
+            <th>Довжина</th>
+            <td>${enterKilometerNum}-км</td>
+            <td>${outputMilesNum.toFixed(2).replace(/\.0+/, '')}-ml</td>
+          </tr>  
+        </table>
+      `)
+  </script>
+</body>
+
+</html>
