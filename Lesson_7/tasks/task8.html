@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 8</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 46px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    img {
+      max-width: 600px;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №8</h1>
+  <p>
+    Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди переходимо
+    при кліку на зображення (тег img повине знаходитись у середині тега a:
+    (<.a>
+      <.img src=”шлях”>
+        <. /a>)
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getBannerCompound(title, image, link) {
+      const totalBanner = 
+      `<h2>${title}</h2>
+        <a target='_blank' href='${link}'>
+          ${image}
+        </a>`
+      return totalBanner
+    }
+    //2. Вводимо необхідні данні.
+    const bannerImage = `<img src='../img/ktm.jpg'>`
+    const bannerTitle = 'Замовляй KTM !!! <br> Тисни на картинку, та переходь за посиланням !!!'
+    const bannerLink = 'https://google.com'
+    const bannerOutput = getBannerCompound(bannerTitle, bannerImage, bannerLink)
+    //3. Виводимо результат.
+    document.write(bannerOutput)
+  </script>
+</body>
+
+</html>
