@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 9</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №9</h1>
+  <p>
+    Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів. Комп’ютер
+    довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка пуста, якщо 1 – то
+    це означає, що там є корабель). Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих пір, поки
+    не будуть потоплені усі кораблі.
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getInputCells(cellsNumbers) {
+      let result = []
+      for (let i = 0; i < cellsNumbers; i++) {
+        result.push(0)
+      }
+      return result
+    }
+    function getInputShips(shipsNumbers) {
+      let totalShipsNum = getInputCells(cellsNumbers)
+      for (let i = 0; i < shipsNumbers; i++) {
+        let randomShipsNum = Math.floor(Math.random() * cellsNumbers)
+        if (totalShipsNum[randomShipsNum] === 0) totalShipsNum[randomShipsNum] = 1
+        else i--
+      }
+      return totalShipsNum
+    }
+    function getUserInfo() {
+      let userHit = 0
+      for (let i = 0; i < Infinity; i++) {
+        const userShot = parseInt(prompt('Введіть номер клітинки в яку потрібно вистрілити'))
+        if (outputAllShips[userShot - 1] === 1) {
+          userHit++
+          if (userHit === shipsNumbers) {
+            return `Ви збили всі кораблі!`
+          }
+        }
+      }
+    }
+    //2. Вводимо необхідні данні.
+    const cellsNumbers = parseInt(prompt(`Введіть кількість клітинок`))
+    const shipsNumbers = parseInt(prompt(`Введіть кількість кораблів`))
+    const outputAllCells = getInputCells(cellsNumbers)
+    const outputAllShips = getInputShips(shipsNumbers)
+    const infoForTheUser = getUserInfo()
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>  
+          </tr>
+          <tr>
+            <th>Кількість клітинок</th>
+            <td>${cellsNumbers}</td>
+          </tr>
+          <tr>
+            <th>Кількість кораблів</th>
+            <td>${shipsNumbers}</td>
+          </tr>
+          <tr>
+            <th>Результат</th>
+            <td>${infoForTheUser}</td>
+          </tr>
+        </table>`)
+  </script>
+</body>
+
+</html>

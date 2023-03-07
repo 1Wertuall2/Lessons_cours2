@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:
+  </p>
+  <ul>
+    <li>номери днів, протягом яких кількість відвідувачів була меншою за 20;</li>
+    <li>номери днів, коли кількість відвідувачів була максимальною;</li>
+    <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+    <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.</li>
+  </ul>
+  <script>
+
+    //1. Описуемо функцію.
+    function getVisitorsPerWeek() {
+      let min = 5
+      let max = 30
+      let visitorsNum = []
+      for (let i = 1; i <= 7; i++) {
+        let randomVisitorsNum = min + Math.floor(Math.random() * (max - min + 1))
+        visitorsNum.push(randomVisitorsNum)
+      }
+      return visitorsNum
+    }
+    function getVisitorsLess20(visitors) {
+      let Less = []
+      for (let i = 0; i < visitors.length; i++) {
+        if (visitors[i] < 20) Less.push(i + 1)
+      }
+      return Less
+    }
+    function getMinNumVisitors(visitors) {
+      let min = visitors[0]
+      for (let i = 1; i < visitors.length; i++) {
+        if (visitors[i] < min) min = visitors[i]
+      }
+      return min
+    }
+    function getMaxNumVisitors(visitors) {
+      let max = visitors[0]
+      for (let i = 1; i < visitors.length; i++) {
+        if (visitors[i] > max) max = visitors[i]
+      }
+      return max
+    }
+    function getDayNumVisitors(visitors, visitorsDay) {
+      let total = []
+      for (let i = 0; i < visitors.length; i++) {
+        if (visitors[i] === visitorsDay) total.push(i + 1)
+      }
+      return total
+    }
+    function getVisitorsWeekDay(visitors, startDay, endDay) {
+      let sumDay = 0
+      for (let day = startDay; day <= endDay; day++) {
+        sumDay += visitors[day - 1]
+      }
+      return sumDay
+    }
+
+    //2. Вводимо необхідні данні.
+    const numberVisitorsPerWeek = getVisitorsPerWeek()
+    const dayNumVisitorsLess20 = getVisitorsLess20(numberVisitorsPerWeek)
+    const minNumVisitors = getMinNumVisitors(numberVisitorsPerWeek)
+    const maxNumVisitors = getMaxNumVisitors(numberVisitorsPerWeek)
+    const dayMinNumVisitors = getDayNumVisitors(numberVisitorsPerWeek, minNumVisitors)
+    const dayMaxNumVisitors = getDayNumVisitors(numberVisitorsPerWeek, maxNumVisitors)
+    const numberVisitorsPerWorkingDay = getVisitorsWeekDay(numberVisitorsPerWeek, 1, 5)
+    const numberVisitorsPerOffDay = getVisitorsWeekDay(numberVisitorsPerWeek, 6, 7)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>  
+          </tr>
+          <tr>
+            <th>Кількість відвідувачів магазину за тиждень</th>
+            <td>${numberVisitorsPerWeek}</td>
+          </tr>
+          <tr>
+            <th>Кількість відвідувачів меньша за 20-чол.</th>
+            <td>${dayNumVisitorsLess20}-дні.</td>
+          </tr>
+          <tr>
+            <th>Кількість відвідувачів була мінімальною</th>
+            <td>${dayMinNumVisitors}-день.</td>
+          </tr>
+          <tr>
+            <th>Кількість відвідувачів була максимальною</th>
+            <td>${dayMaxNumVisitors}-день.</td>
+          </tr>
+          <tr>
+            <th>Кількість відвідувачів у робочі дні</th>
+            <td>${numberVisitorsPerWorkingDay}-чол.</td>
+          </tr>
+          <tr>
+            <th>Кількість відвідувачів у вихідні дні</th>
+            <td>${numberVisitorsPerOffDay}-чол.</td>
+          </tr>
+        </table>`)
+  </script>
+</body>
+
+</html>

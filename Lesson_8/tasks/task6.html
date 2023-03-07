@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    .border {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №6</h1>
+  <p>
+    Дано послідовність цін товарів та назв (у окремих масивах). Вивести на екран ті, які може собі дозволити користувач
+    (кількість грошей задається). <br><br>
+    Приклад збереження даних :
+  </p>
+  <p class="border">
+    let productsPrices = [1000, 20, 31] <br>
+    let productsTitles = [‘cheese’, ‘juice’, ‘bread’]
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getBuyBuyer(money, price, title) {
+      let canBuy = []
+      for (let i = 0; i < price.length; i++) {
+        if (price[i] <= money) canBuy.push(title[i])
+      }
+      return canBuy;
+    }
+    //2. Вводимо необхідні данні.
+    const enterAmountMoney = parseFloat(prompt(`Введіть кількість грошей`))
+    const productPrices = [60, 45, 55, 30, 180, 20, 50, 30, 50]
+    const productTitles = ['Сир', 'Помідори', 'Печіво', 'Сік', 'Горілка', 'Хліб', 'Арахіс', 'Молоко', 'Масло']
+    const whatCanBuyerBuy = getBuyBuyer(enterAmountMoney, productPrices, productTitles)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>  
+          </tr>
+          <tr>
+            <th>Кількість грошей покупця</th>
+            <td>${enterAmountMoney}</td>
+          </tr>
+          <tr>
+            <th>Товари які може придбати покупеци</th>
+            <td>${whatCanBuyerBuy}</td>
+          </tr>
+        </table>`)
+  </script>
+</body>
+
+</html>

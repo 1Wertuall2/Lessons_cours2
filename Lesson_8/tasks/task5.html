@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №5</h1>
+  <p>
+    Дано послідовність оцінок учня. Підрахувати кількість:
+  </p>
+  <p>
+    1) двійок <br>
+    2) кількість хороших оцінок (добре, відмінно); <br>
+    3) кількість оцінок, які нижче середнього.
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getRandomOutput(amountGrades) {
+      let min = 2, max = 5
+      let random = []
+      for (let i = 0; i < amountGrades; i++) {
+        let grades = min + Math.floor(Math.random() * (max - min + 1))
+        random.push(grades)
+      }
+      return random
+    }
+    function getNumberTwos(gradeTwo) {
+      let scoresTwo = 0
+      for (let i = 0; i < gradeTwo.length; i++) {
+        if (gradeTwo[i] === 2) scoresTwo++
+      }
+      return scoresTwo
+    }
+    function getBelowAverage(average) {
+      let scoresAverage = 0
+      for (let i = 0; i < average.length; i++) {
+        if (average[i] === 2 || average[i] === 3) scoresAverage++
+      }
+      return scoresAverage
+    }
+    function getGoodGrades(goodGrade) {
+      let scoresGood = 0
+      for (let i = 0; i < goodGrade.length; i++) {
+        if (goodGrade[i] >= 4) scoresGood++
+      }
+      return scoresGood
+    }
+
+    //2. Вводимо необхідні данні.
+    const enterAmountGrades = parseInt(prompt(`Введіть кількість оцінок`))
+    const randomAmountOutput = getRandomOutput(enterAmountGrades)
+    const numberOfTwos = getNumberTwos(randomAmountOutput)
+    const numberBelowAverage = getBelowAverage(randomAmountOutput)
+    const numberGoodGrades = getGoodGrades(randomAmountOutput)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>  
+          </tr>
+          <tr>
+            <th>Оцінки учня</th>
+            <td>${randomAmountOutput}</td>
+          </tr>
+          <tr>
+            <th>Кількість двійок</th>
+            <td>${numberOfTwos}</td>
+          </tr>
+          <tr>
+            <th>Кількість нижче середнього</th>
+            <td>${numberBelowAverage}</td>
+          </tr>
+          <tr>
+            <th>Кількість хороших оцінок</th>
+            <td>${numberGoodGrades}</td>
+          </tr>
+        </table>`)
+  </script>
+</body>
+
+</html>
