@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1-цями, а друга
+    заповнена 7-ками.
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getArrayWithUnits(NumberElements) {
+      return new Array(NumberElements).fill(1)
+    }
+    function getTotalArray(NumberElements) {
+      let totalArray = getArrayWithUnits(NumberElements)
+      return totalArray.fill(7, NumberElements / 2)
+    }
+    //2. Вводимо необхідні данні.
+    const userInputNumberOfElements = parseInt(prompt('Введіть кількість елементів!'))
+    const arrayWithUnits = getArrayWithUnits(userInputNumberOfElements)
+    const totalArrayElements = getTotalArray(userInputNumberOfElements)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>  
+          </tr>
+          <tr>
+            <th>Введена кількість елементів</th>
+            <td>${userInputNumberOfElements}</td>
+          </tr>
+          <tr>
+            <th>Виведений результат</th>
+            <td>${totalArrayElements}</td>
+          </tr>
+        </table>
+      `)
+  </script>
+</body>
+
+</html>

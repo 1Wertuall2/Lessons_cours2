@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 10</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.3;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    th,
+    td:first-child {
+      background: darkturquoise;
+      color: darkblue;
+      padding: 10px 20px;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №10</h1>
+  <p>
+    Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у грн.
+  </p>
+  <script>
+    //1. Описуемо функцію.
+    function getWithTheAmountTax(arrayPrices) {
+      const tax = 0.2
+      return arrayPrices.map(element => element * tax)
+    }
+    //2. Вводимо необхідні данні.
+    const arrayPrices = [160, 45, 55, 230, 180, 20, 50, 530, 50]
+    const arrayWithTheAmountTax = getWithTheAmountTax(arrayPrices)
+    //3. Виводимо результат.
+    document.write(`
+    <table border="3px">
+          <tr>
+            <th>Дані</th>
+            <th>Значення</th>  
+          </tr>
+          <tr>
+            <th>Масив цін у грн.</th>
+            <td>${arrayPrices}</td>
+          </tr>
+          <tr>
+            <th>Масив з величиною сплаченого податку у грн.</th>
+            <td>${arrayWithTheAmountTax}</td>
+          </tr>
+        </table>
+      `)
+  </script>
+</body>
+
+</html>
