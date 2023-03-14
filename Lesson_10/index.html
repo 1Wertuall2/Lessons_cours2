@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 10</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #46f3e5fb, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 15px;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      color: dimgrey;
+    }
+    h4 {
+      text-align: center;
+      font-size: 36px;
+      color: dimgrey;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 26px;
+      margin-left: 20px;
+    }
+    .price{
+      text-align: center;
+    }
+    span{
+      padding-left: 30px;
+      color: orangered;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <h1>
+    Home Work №10 <br>
+    Arrays
+  </h1>
+  <h3>
+    Задача №1
+  </h3>
+  <p>
+    Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000) <br>
+    1) Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.<br>
+    2) Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.<br>
+    3) Сформувати список з тих цін, які більші за попереднє значення<br>
+    4) Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального<br>
+    5) Підрахувати кількість змін цін<br>
+    6) Визначити, чи є ціна, що менше 1000<br>
+    7) Визначати, чи усі ціни більше за 1000<br>
+    8) Підрахувати кількість цін, що більше за 1000<br>
+    9) Підрахувати суму цін, що більше за 1000<br>
+    10) Знайти першу ціну, що більше за 1000<br>
+    11) Знайти індекс першої ціни, що більше за 1000<br>
+    12) Знайти останню ціну, що більше за 1000<br>
+    13) Знайти індекс останньої ціни, що більше за 1000
+  </p>
+  <script>
+
+    // 1. Виводимо функцію
+    
+    function getPriceOfSecuritiesPeriod(numberPeriods) {
+      const minPriceOfSecurities = 1
+      const maxPriceOfSecurities = 10000
+      let arrPrices = []
+      for (let i = 0; i < numberPeriods; i++) {
+        const randonPrices = minPriceOfSecurities + Math.floor(Math.random() * (maxPriceOfSecurities - minPriceOfSecurities + 1)) 
+        arrPrices.push(randonPrices)
+      }
+      return arrPrices
+    }
+    // 2. Вводимо дані і обчислюємо
+    const numberRequiredPeriods = parseInt(prompt('Введіть кількість розділів у періоді для виводу цін!!!'))
+    const priceOfSecuritiesPeriod = getPriceOfSecuritiesPeriod(numberRequiredPeriods)
+    document.write(`<h4>Історія цін у даному періоді :</h4><p class="price">${priceOfSecuritiesPeriod}</p>`)
+
+    const arrayPricesGreaterThan1000 = priceOfSecuritiesPeriod.filter(priceNum => priceNum > 1000)
+    document.write(`<p>1) Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.<br><span>${arrayPricesGreaterThan1000}</span></p>`)
+
+    const arrayNumberGreaterThan1000 = priceOfSecuritiesPeriod.reduce((priceNum, element, index) => element > 1000 ? [...priceNum, index] : priceNum, [])
+    document.write(`<p>2) Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.<br><span>${arrayNumberGreaterThan1000}</span></p>`)
+
+    const priceListGreaterThanPreviousValue = priceOfSecuritiesPeriod.filter((element, index, baseArr) => element > baseArr[index - 1])
+    document.write(`<p>3) Сформувати список з тих цін, які більші за попереднє значення<br><span>${priceListGreaterThanPreviousValue}</span></p>`)
+
+    const maxPriceNumber = Math.max(...priceOfSecuritiesPeriod)
+    const arrayPriceAsPercentageOfMaximum = priceOfSecuritiesPeriod.map(element => Math.ceil(element / maxPriceNumber * 100))
+    document.write(`<p>4) Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального<br><span>${arrayPriceAsPercentageOfMaximum}</span></p>`)
+
+    const countingNumberOfPriceChanges = priceOfSecuritiesPeriod.reduce((priceNum, element, index, baseArr) => element !== baseArr[index + 1] ? ++priceNum : priceNum,0) 
+    document.write(`<p>5) Підрахувати кількість змін цін<br><span>${countingNumberOfPriceChanges}</span></p>`)
+
+    const priceLessThan1000 = priceOfSecuritiesPeriod.some(element => element < 1000 )
+    document.write(`<p>6) Визначити, чи є ціна, що менше 1000<br><span>${priceLessThan1000}</span></p>`)
+
+    const areAllPricesGreaterThan1000 = priceOfSecuritiesPeriod.every(element => element > 1000 )
+    document.write(`<p>7) Визначати, чи усі ціни більше за 1000<br><span>${areAllPricesGreaterThan1000}</span></p>`)
+
+    const numberOfPricesGreaterThan1000 = priceOfSecuritiesPeriod.reduce((priceNum, element) => element > 1000 ? ++priceNum : priceNum,0)
+    document.write(`<p>8) Підрахувати кількість цін, що більше за 1000<br><span>${numberOfPricesGreaterThan1000}</span></p>`)
+
+    const sumOfPricesWhichMoreThan1000 = priceOfSecuritiesPeriod.reduce((priceNum, element) => element > 1000 ? priceNum + element : priceNum,0)
+    document.write(`<p>9) Підрахувати суму цін, що більше за 1000<br><span>${sumOfPricesWhichMoreThan1000}</span></p>`)
+
+    const firstPriceThatIsMoreThan1000 = priceOfSecuritiesPeriod.find(element => element > 1000)
+    document.write(`<p>10) Знайти першу ціну, що більше за 1000<br><span>${firstPriceThatIsMoreThan1000}</span></p>`)
+
+    const indexOfFirstPriceIsMoreThan1000 = priceOfSecuritiesPeriod.findIndex(element => element > 1000)
+    document.write(`<p>11) Знайти індекс першої ціни, що більше за 1000<br><span>${indexOfFirstPriceIsMoreThan1000}</span></p>`)
+
+    const lastPriceIsMoreThan1000 = priceOfSecuritiesPeriod.findLast(element => element > 1000)
+    document.write(`<p>12) Знайти останню ціну, що більше за 1000<br><span>${lastPriceIsMoreThan1000}</span></p>`)
+
+    const indexOfLastPriceIsMoreThan1000 = priceOfSecuritiesPeriod.findLastIndex(element => element > 1000)
+    document.write(`<p>13) Знайти індекс останньої ціни, що більше за 1000<br><span>${indexOfLastPriceIsMoreThan1000}</span></p>`)
+  </script>
+</body>
+
+</html>
