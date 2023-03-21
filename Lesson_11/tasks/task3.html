@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      line-height: 1.3;
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 15px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 26px;
+      margin: 10px 0;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №3</h1>
+  <p>
+    Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє
+    вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.
+  </p>
+  <script>
+    //1. Функція двовимірного масива розміром 6*6.
+    function getGreatingTwoDimensionalArray() {
+      let arrayRows = []
+      for (let i = 0; i < 6; i++) {
+        let arrayColumns = []
+        for (let j = 0; j < 6; j++) {
+          arrayColumns.push(0)
+        }
+        arrayRows.push(arrayColumns)
+      }
+      return arrayRows
+    }
+    const greatingTwoDimensionalArray = getGreatingTwoDimensionalArray()
+    console.log(greatingTwoDimensionalArray)
+    //2. Функція двовимірного масива розміром 6*6 з довільним розташуванням кораблів.
+    function getRandomLocation() {
+      const minPositionValue = 0
+      const maxPositionValue = 5
+      return minPositionValue + Math.floor(Math.random() * (maxPositionValue - minPositionValue + 1))
+    }
+    function getArbitraryLocationOfShips(fieldArray) {
+      let numberOfShips = 5
+      do {
+        let columnPosition = getRandomLocation()
+        let rowPosition = getRandomLocation()
+        if (fieldArray[columnPosition][rowPosition] === 0) {
+          fieldArray[columnPosition][rowPosition] = 1
+          numberOfShips--
+        }
+      } 
+      while (numberOfShips > 0)
+      return fieldArray
+    }
+    const arbitraryLocationOfShips = getArbitraryLocationOfShips(greatingTwoDimensionalArray)
+    console.log(arbitraryLocationOfShips)
+    //3. Починаемо гру )))
+    function getinputShotsAtShips(filedArray, numberOfShips) {
+      let numberOfShells = Infinity
+      do {
+        let rowNumberInput = parseInt(prompt('Введiть номер рядка вiд (1 до 6)'))
+        let columnNumberInput = parseInt(prompt('Введiть номер стовбця вiд (1 до 6)'))
+        if (filedArray[rowNumberInput - 1][columnNumberInput - 1] === 1) {
+          numberOfShips--
+          numberOfShells--
+          alert(
+            `Влучання, ви потопили корабель, залишилось ${numberOfShips} кораблiв  `
+          )
+        } else {
+          numberOfShells--
+          alert(
+            `Промах, ви не влучили, залишилось ${numberOfShips} кораблiв `
+          )
+        }
+      } while (numberOfShips > 0)
+      alert(
+        `Перемога !!! Ви потопили всі кораблі!!!)))) `
+      )
+      return filedArray
+    }
+    const inputShotsAtShips = getinputShotsAtShips(arbitraryLocationOfShips, 5)
+  </script>
+</body>
+
+</html>

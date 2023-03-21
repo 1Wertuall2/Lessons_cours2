@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+    }
+
+    .inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 40px;
+    }
+
+    .block__row {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      max-width: 250px;
+      padding-left: 40px;
+    }
+
+    .block__element {
+      border: 5px solid black;
+      height: 70px;
+    }
+
+    .block__element--color {
+      background-color: slateblue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №1</h1>
+  <p>
+    Знайти суми елементів у вказаній області
+  </p>
+  <div class="inner">
+    <div class="block">
+      <p>
+        1)
+      </p>
+      <div class="block__row">
+        <div class="block__element block__element--color">
+        </div>
+        <div class="block__element">
+        </div>
+        <div class="block__element">
+        </div>
+        <div class="block__element">
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <p>
+        2)
+      </p>
+      <div class="block__row">
+        <div class="block__element">
+        </div>
+        <div class="block__element block__element--color">
+        </div>
+        <div class="block__element">
+        </div>
+        <div class="block__element">
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <p>
+        3)
+      </p>
+      <div class="block__row">
+        <div class="block__element">
+        </div>
+        <div class="block__element ">
+        </div>
+        <div class="block__element block__element--color">
+        </div>
+        <div class="block__element">
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <p>
+        4)
+      </p>
+      <div class="block__row">
+        <div class="block__element">
+        </div>
+        <div class="block__element ">
+        </div>
+        <div class="block__element">
+        </div>
+        <div class="block__element block__element--color">
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>
+    5) Суму парних рядків
+  </p>
+  <p>
+    6) Суму непарних стовпців
+  </p>
+  <p>
+    7) У парних рядках – непарні стовпці, у непарних – парні.
+  </p>
+  <h3>Розв'язок задач</h3>
+  <script>
+    //1. Вводимо необхідні данні.
+    const arrayElements = [[35, 23, 56, 12, 78], [47, 38, 59, 19, 30], [68, 63, 82, 31, 25], [47, 43, 75, 51, 55]]
+    //2. Обчислюемо.
+    let firstSumElements = 0
+    for (let rowIndex = 0; rowIndex <= 1; rowIndex++) {
+      for (let columnIndex = 0; columnIndex <= 1; columnIndex++) {
+        firstSumElements += arrayElements[rowIndex][columnIndex]
+      }
+    }
+    document.write(`<p>1) Сума елементів у в казаній області : <span>${firstSumElements}</span></p>`)
+
+    let secondSumElements = 0
+    for (let rowIndex = 0; rowIndex <= 1; rowIndex++) {
+      for (let columnIndex = 2; columnIndex <= 4; columnIndex++) {
+        secondSumElements += arrayElements[rowIndex][columnIndex]
+      }
+    }
+    document.write(`<p>2) Сума елементів у в казаній області : <span>${secondSumElements}</span></p>`)
+
+    let thirdSumElements = 0
+    for (let rowIndex = 2; rowIndex <= 3; rowIndex++) {
+      for (let columnIndex = 0; columnIndex <= 1; columnIndex++) {
+        thirdSumElements += arrayElements[rowIndex][columnIndex]
+      }
+    }
+    document.write(`<p>3) Сума елементів у в казаній області : <span>${thirdSumElements}</span></p>`)
+
+    let fourthSumElements = 0
+    for (let rowIndex = 2; rowIndex <= 3; rowIndex++) {
+      for (let columnIndex = 2; columnIndex <= 4; columnIndex++) {
+        fourthSumElements += arrayElements[rowIndex][columnIndex]
+      }
+    }
+    document.write(`<p>4) Сума елементів у в казаній області : <span>${fourthSumElements}</span></p>`)
+
+    let sumPairedRowElements = 0
+    for (let rowIndex = 0; rowIndex <= 3; rowIndex++) {
+      if (rowIndex % 2 === 0) {
+        for (let columnIndex = 0; columnIndex <= 4; columnIndex++) {
+          sumPairedRowElements += arrayElements[rowIndex][columnIndex]
+        }
+      }
+    }
+    document.write(`<p>5) Сума парних рядків : <span>${sumPairedRowElements}</span></p>`)
+
+    let sumNotPairedColumnElements = 0
+    for (let rowIndex = 0; rowIndex <= 3; rowIndex++) {
+      for (let columnIndex = 0; columnIndex <= 4; columnIndex++) {
+        if (columnIndex % 2 !== 0) sumNotPairedColumnElements += arrayElements[rowIndex][columnIndex]
+      }
+    }
+    document.write(`<p>6) Сума непарних стовпців : <span>${sumNotPairedColumnElements}</span></p>`)
+
+    let sumNotPairedRowInPairedColumn = 0
+    for (let rowIndex = 0; rowIndex <= 3; rowIndex++) {
+      if (rowIndex % 2 === 0)
+        for (let columnIndex = 1; columnIndex <= 4; columnIndex += 2) {
+          sumNotPairedRowInPairedColumn += arrayElements[rowIndex][columnIndex]
+        }
+      else
+        for (let columnIndex = 0; columnIndex <= 4; columnIndex += 2) {
+          sumNotPairedRowInPairedColumn += arrayElements[rowIndex][columnIndex]
+        }
+    }
+    document.write(`<p>7) У парних рядках – непарні стовпці, у непарних – парні : <span>${sumNotPairedRowInPairedColumn}</span></p>`)
+
+  </script>
+</body>
+
+</html>
