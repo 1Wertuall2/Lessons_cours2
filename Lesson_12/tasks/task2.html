@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 10px 0;
+    }
+
+    .inner {
+      padding-left: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування змішуванням.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    function getArrayOfRandomNumbers() {
+      const minArrayNum = 10
+      const maxArrayNum = 70
+      let arrayNum = []
+      for (let i = 0; i < 30; i++) {
+        const randomNum = minArrayNum + Math.floor(Math.random() * (maxArrayNum - minArrayNum + 1))
+        arrayNum.push(randomNum)
+      }
+      return arrayNum
+    }
+    const arrayOfRandomNumbers = getArrayOfRandomNumbers()
+    document.write(`<p> Масив 30 випадкових цілих чисел : <span>${arrayOfRandomNumbers}</span></p>`)
+    console.log(arrayOfRandomNumbers)
+
+    let leftIndex = 0
+    let rightIndex = arrayOfRandomNumbers.length - 1
+    let exchanges = 0
+    while (leftIndex < rightIndex) {
+      for (let index = leftIndex; index < rightIndex; index++) {
+        if (arrayOfRandomNumbers[index] > arrayOfRandomNumbers[index + 1]) {
+          [arrayOfRandomNumbers[index], arrayOfRandomNumbers[index + 1]] = [arrayOfRandomNumbers[index + 1], arrayOfRandomNumbers[index]]
+          exchanges++
+        }
+      }
+      rightIndex--
+      for (let index = rightIndex; index > leftIndex; index--) {
+        if (arrayOfRandomNumbers[index] < arrayOfRandomNumbers[index - 1]) {
+          [arrayOfRandomNumbers[index - 1], arrayOfRandomNumbers[index]] = [arrayOfRandomNumbers[index], arrayOfRandomNumbers[index - 1]]
+          exchanges++
+        }
+      }
+      leftIndex++
+    }
+    document.write(`<p> Масив 30 випадкових цілих чисел сортованих змішуванням : <span>${arrayOfRandomNumbers}</span></p>`)
+    document.write(`<p> Кількість обмінів під час сортування змішуванням : <span>${exchanges}</span></p>`)
+  </script>
+</body>
+
+</html>
