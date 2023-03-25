@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 24px;
+      color: rgb(31, 27, 58);
+      margin: 2px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №3</h1>
+  <p>
+    З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по
+    одне значення від заданого мінімального до заданого максимального. Якщо значення досягне максимального, то
+    наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір номерів місяців.
+  </p><br>
+  <script>
+    //1. Вводимо необхідні данні.
+    function getListOfMonthNumbers(minMonth, maxMonth) {
+      let month = minMonth
+      function monthCounter() {
+        if (month > maxMonth) month = minMonth
+        return month++
+      }
+      return monthCounter
+    }
+    const listOfMonthNumbers = getListOfMonthNumbers(1, 12)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+    document.write(`<p>Місяць № <span>${listOfMonthNumbers()} </span></p><br>`)
+  </script>
+</body> 
+
+</html>

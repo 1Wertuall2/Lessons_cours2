@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №6</h1>
+  <p>
+    Через 20 секунд перейти на сайт ukr.net. Для цього через 20 секунд після відкриття треба виконати команду:
+    window.location.href = 'https://www.ukr.net/'
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    let pageTransition = setTimeout(() => window.location.href = 'https://www.ukr.net/', 20000)
+  </script>
+</body>
+
+</html>

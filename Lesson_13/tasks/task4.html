@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №4</h1>
+  <p>
+    З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по
+    одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач». Виводимо для користувача
+    опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    function getLetterSearch(guessWord) {
+      let counter = 0
+      function getOneLetter() {
+        if (counter === guessWord.length) counter = 0
+        return guessWord[counter++]
+      }
+      return getOneLetter
+    }
+    const guessWord = 'Bike'
+    const letterSearch = getLetterSearch(guessWord)
+
+    function getCountingOfGuessedLetters(letter, guessWord) {
+      let guessedLetter = 0
+      for (let i = 1; i <= guessWord.length; i++) {
+        const enterUserLetter = prompt(`Колісний транспортний засіб (або спортивний снаряд), що рухається м’язовою силою людини через ніжні педалі. Введіть ${i} букву`)
+        if (letter() === enterUserLetter) guessedLetter++
+      }
+      return guessedLetter
+    }
+    const сountingOfGuessedLetters = getCountingOfGuessedLetters(letterSearch, guessWord)
+    document.write(`<p>Вірна відповідь: <span>${guessWord}</span></p>`)
+    document.write(`<p>Вірно введених букв: <span>${сountingOfGuessedLetters}</span></p>`)
+  </script>
+</body>
+
+</html>

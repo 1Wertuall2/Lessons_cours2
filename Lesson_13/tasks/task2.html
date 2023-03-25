@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Нехай x0 = x1 = 1, xI = xI_1 + 2 * xI_2, де I = 2,3,... Визначити Xn. Розв’язати з використанням рекурсивних і
+    нерекурсивних алгоритмів
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    function getUsingRecursiveAlgorithms(n) {
+      if (n === 0 || n === 1) return 1
+      else
+        return getUsingRecursiveAlgorithms(n - 1) + (2 * getUsingRecursiveAlgorithms(n - 2))
+    }
+    const usingRecursiveAlgorithms = getUsingRecursiveAlgorithms(10)
+    document.write(`<p>Розв’язок з використанням рекурсивних алгоритмів : <span>${usingRecursiveAlgorithms}</span></p>`)
+
+    function getUsingNonRecursiveAlgorithms(n) {
+      if (n === 0 || n === 1) return 1
+      else {
+        let x_n_1 = x_n_2 = 1
+        for (let i = 2; i <= n; i++) {
+          x_n = x_n_1 + 2 * x_n_2
+          x_n_2 = x_n_1
+          x_n_1 = x_n
+        }
+      }
+      return x_n
+    }
+    const usingNonRecursiveAlgorithms = getUsingNonRecursiveAlgorithms(10)
+    document.write(`<p>Розв’язок з використанням нерекурсивних алгоритмів : <span>${usingNonRecursiveAlgorithms}</span></p>`)
+  </script>
+</body>
+
+</html>
