@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №1</h1>
+  <p>
+    Описати масив об’єктів – сайтів розроблених компанією з такими властивостями <br>
+    ----- Властивості ------ <br>
+    - назва компанії на час розробки (назву періодично змінюють) <br>
+    - власник компанії <br>
+    - споснсори (масив спонсорів) <br>
+    * прізвище спонсора <br>
+    * ім’я спонсора <br>
+    * сума вкладень спонсора <br>
+    - рік випуску <br>
+    - вартість сайту <br>
+    Знайти:
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    let descriptionArraysOfSites = [
+      {
+        siteName: 'First Site',
+        siteOwner: 'Dmitro',
+        sponsors: [
+          {
+            surnameSponsor: 'Martinuk',
+            nameSponsor: 'Serhiy',
+            investSponsorSum: 4500,
+          },
+          {
+            surnameSponsor: 'Belyaeva',
+            firstName: 'Olesya',
+            investSponsorSum: 5200,
+          },
+        ],
+        yearOfProduct: 2015,
+        sitePrice: 12000,
+      },
+      {
+        siteName: 'Second Site',
+        siteOwner: 'Valeriy',
+        sponsors: [
+          {
+            surnameSponsor: 'Repina',
+            nameSponsor: 'Svetlana',
+            investSponsorSum: 4200,
+          },
+          {
+            surnameSponsor: 'Arakyan',
+            nameSponsor: 'Armen',
+            investSponsorSum: 3600,
+          },
+          {
+            surnameSponsor: 'Shevkhuk',
+            nameSponsor: 'Oles',
+            investSponsorSum: 7500,
+          },
+        ],
+        yearOfProduct: 2006,
+        sitePrice: 21000,
+      },
+      {
+        siteName: 'Third Site',
+        siteOwner: 'Katya',
+        sponsors: [
+          {
+            surnameSponsor: 'Shadrin',
+            nameSponsor: 'Evgen',
+            investSponsorSum: 5200,
+          },
+        ],
+        yearOfProduct: 2011,
+        sitePrice: 8550,
+      },
+      {
+        siteName: 'Fourth Site',
+        siteOwner: 'Ivan',
+        sponsors: [
+          {
+            surnameSponsor: 'Savchenko',
+            nameSponsor: 'Petro',
+            investSponsorSum: 8300,
+          },
+          {
+            surnameSponsor: 'Cherkash',
+            nameSponsor: 'Viktor',
+            investSponsorSum: 3450,
+          },
+        ],
+        yearOfProduct: 2003,
+        sitePrice: 42000,
+      },
+    ]
+    // 1) Загальна вартість усіх сайтів
+    const totalSitePrice = descriptionArraysOfSites.reduce((prevNum, element) => prevNum + element.sitePrice, 0)
+    document.write(`<p>1) Загальну вартість усіх сайтів : <span>${totalSitePrice}</span></p>`)
+
+    // 2) Кількість сайтів, що було зроблено між 2000 та 2009 рр.
+    const numberOfSitesMade2000_2009 = descriptionArraysOfSites.reduce((prevNum, element) => (element.yearOfProduct > 2000 && element.yearOfProduct < 2009 ? ++prevNum : prevNum), 0)
+    document.write(`<p>2) Кількість сайтів, що було зроблено між 2000 та 2009 рр. : <span>${numberOfSitesMade2000_2009}</span></p>`)
+
+    // 3) Кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+    const numberOfSitesWithSponsorsSum = descriptionArraysOfSites.filter(element => element.sponsors.reduce((prevNum, element) => prevNum + element.investSponsorSum, 0) > 100000).length
+    document.write(`<p>3) Кількість сайтів, де сума спонсорських вкладень була більшою за 100000 : <span>${numberOfSitesWithSponsorsSum}</span></p>`)
+
+    // 4) Створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+    const listOfAllSponsors = descriptionArraysOfSites.map(element => element.sponsors.map(element => `${element.surnameSponsor} ${element.nameSponsor}`))
+    document.write(`<p>4) Cтворити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив) : <span>${listOfAllSponsors}</span></p>`)
+    console.log(listOfAllSponsors)
+
+    // 5) Знайти рік, коли прибуток був найбільшим
+    const yearWhenProfitWasGreatest = descriptionArraysOfSites.reduce((prevNum, element) => element.sitePrice > prevNum.sitePrice ? element : prevNum).yearOfProduct
+    document.write(`<p>5) Знайти рік, коли прибуток був найбільшим : <span>${yearWhenProfitWasGreatest}</span></p>`)
+
+    // 6) Упорядкувати список за спаданням прибутку
+    const listInDescendingOrderOfProfit = descriptionArraysOfSites.sort((element1, element2) => element2.sitePrice - element1.sitePrice)
+    document.write(`<p>6) Упорядкувати список за спаданням прибутку : <span>Упорядкування у консолі, рядок 158</span></p>`)
+    console.log(listInDescendingOrderOfProfit)
+
+    // 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+    const sitesWithLowerCost = descriptionArraysOfSites.filter(element => element.sitePrice < 10000)
+    const sitesCostMore = descriptionArraysOfSites.filter(element => element.sitePrice > 10000)
+    document.write(`<p>7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000 : <span>Списки у консолі, рядок 164 і 165</span></p>`)
+    console.log(sitesWithLowerCost)
+    console.log(sitesCostMore)
+  </script>
+</body>
+
+</html>
