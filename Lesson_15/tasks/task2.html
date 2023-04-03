@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+    }
+
+    table {
+      border-spacing: 5px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    td {
+      background: #8deaac;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №1</h1>
+  <p>
+    Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+  </p>
+  <img src="../img/image1.jpg" alt="">
+  <script>
+    //1. Вводимо необхідні данні.
+    function ShootingResult(arrLength, minValue, maxValue) {
+      this.minValue = minValue
+      this.maxValue = maxValue
+      this.value = this.getValueList(arrLength)
+    }
+    ShootingResult.prototype.getRandomNum = function (minV, maxV) {
+      return minV + Math.floor(Math.random() * (maxV - minV + 1))
+    }
+    ShootingResult.prototype.getValueList = function (arrLength) {
+      let valueList = []
+      for (let i = 0; i < arrLength; i++) {
+        const randomNum = this.getRandomNum(this.minValue, this.maxValue)
+        valueList.push(randomNum)
+      }
+      return valueList
+    }
+    ShootingResult.prototype.getShootAtHare = function () {
+      let userShot = parseInt(prompt(`Введіть квадрат для пострілу від 1 до 10`))
+      for (let i = 0; i < this.value.length; i++) {
+        if (this.value[userShot - 1] === 0)
+          alert('Ви не влучили!')
+        else alert('Ви влучили в зайця!')
+      }
+    }
+    ShootingResult.prototype.getResultOfShot = function () {
+      document.write(`<table border='3px'>`)
+      for (const index of this.value) {
+        document.write(`<td>${index}</td>`)
+      }
+      document.write(`</table>`)
+    }
+    let shootingResult = new ShootingResult(10, 0, 1)
+    shootingResult.getShootAtHare()
+    shootingResult.getValueList()
+    shootingResult.getResultOfShot()
+    console.log(shootingResult)
+  </script>
+</body>
+
+</html>

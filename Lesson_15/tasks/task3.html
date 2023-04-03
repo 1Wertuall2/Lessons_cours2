@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      margin: 5px 0;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Створити об’єкт «Авто».
+  </p>
+  <img src="../img/image2.jpg" alt="">
+  <script>
+    //1. Вводимо необхідні данні.
+    function Auto(carBrand, tankSize, litersAvailable, numberSeats, numberPassengers) {
+      this.carBrand = carBrand
+      this.tankSize = tankSize
+      this.litersAvailable = litersAvailable
+      this.numberSeats = numberSeats
+      this.numberPassengers = numberPassengers
+    }
+    Auto.prototype.getNumberOfLitersAvailable = function (addLitersAvailable) {
+      if (this.tankSize >= addLitersAvailable + this.litersAvailable)
+        this.litersAvailable += addLitersAvailable
+      else document.write(`<p>Кількість заправлених літрів - ${this.litersAvailable}</p>`)
+    }
+    Auto.prototype.getPassengersNumber = function () {
+      document.write(`<p>Кількість пасажирів: ${this.numberPassengers}</p>`)
+    }
+    Auto.prototype.getAddingPassengers = function (addNumberPassengers) {
+      if (this.numberSeats >= this.numberPassengers + addNumberPassengers)
+        this.numberPassengers += addNumberPassengers
+      else document.write(`<p>Кількість пасажирів які зайшли - ${this.numberPassengers}</p>`)
+    }
+    Auto.prototype.getDisembarkationPassengers = function (delPassengersNumber) {
+      if (this.numberPassengers >= delPassengersNumber)
+        this.numberPassengers -= delPassengersNumber
+      else document.write(`<p>Кількість пасажирів - ${this.numberPassengers}</p>`)
+    }
+        let auto = new Auto('Ford', 40, 22, 5, 3)
+      console.log(auto)
+      auto.getNumberOfLitersAvailable()
+      auto.getPassengersNumber()
+      auto.getAddingPassengers(1)
+      auto.getPassengersNumber()
+      auto.getDisembarkationPassengers(2)
+      auto.getPassengersNumber()
+  </script>
+</body>
+
+</html>

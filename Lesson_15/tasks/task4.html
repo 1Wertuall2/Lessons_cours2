@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      margin: 5px 0;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №3</h1>
+  <p>
+    Розробити клас MultChecker для перевірки таблиці множення
+  </p>
+  <img src="../img/image3.jpg" alt="">
+  <script>
+    //1. Вводимо необхідні данні.
+    class MultChecker {
+      constructor(checkedNumber) {
+        this.checkedNumber = checkedNumber
+        this.correctAnswer = 0
+        this.incorrectAnswer = 0
+      }
+      getRandomNum() {
+        let randomNum = 1 + Math.floor(Math.random() * 10)
+        let totalAnswer = this.checkedNumber * randomNum
+        return { randomNum, totalAnswer }
+      }
+      getCheckingAnswer() {
+        for (let i = 1; i <= 5; i++) {
+          let checking = this.getRandomNum()
+          let enterUserAnswer = parseInt(prompt(`Дайте відповідь -  ${this.checkedNumber} * ${checking.randomNum} =`))
+          if (enterUserAnswer === checking.totalAnswer) this.correctAnswer++
+          else this.incorrectAnswer++
+        }
+      }
+      render() {
+        document.write(`<p>Число яке перевіряємо ${this.checkedNumber}</p>`)
+        document.write(`<p>Правильних відповідей ${this.correctAnswer}</p>`)
+        document.write(`<p>Неправильних відповідей ${this.incorrectAnswer}</p>`)
+      }
+    }
+    let multChecker = new MultChecker(8)
+    multChecker.getCheckingAnswer()
+    multChecker.render()
+  </script>
+</body>
+
+</html>

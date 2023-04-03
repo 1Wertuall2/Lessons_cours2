@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      margin: 5px 0;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №4</h1>
+  <p>
+    Розробити клас Baner
+  </p>
+  <img src="../img/image4.jpg" alt="">
+  <script>
+    //1. Вводимо необхідні данні.
+    let bannerArr = [
+      {
+        logo: '../img/youtube.png',
+        link: 'https://www.youtube.com.ua',
+      },
+      {
+        logo: '../img/facebook.jpg',
+        link: 'https://www.facebook.com.ua',
+      },
+      {
+        logo: '../img/twitter.jpg',
+        link: 'https://twitter.com.ua',
+      },
+    ]
+    class Banner {
+      constructor(developingBannerArr) {
+        this.bannerArr = developingBannerArr
+      }
+      getRandomNumBanner() {
+        let randomNum = Math.floor(Math.random() * this.bannerArr.length)
+        return this.bannerArr[randomNum]
+      }
+      getBannerOutput() {
+        let banner = this.getRandomNumBanner()
+        document.write(`<a href='${banner.link}'><img src='${banner.logo}'></a>`)
+      }
+    }
+    let banner = new Banner(bannerArr)
+    banner.getBannerOutput()
+
+  </script>
+</body>
+
+</html>

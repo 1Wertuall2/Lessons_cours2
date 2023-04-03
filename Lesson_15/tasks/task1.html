@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №0</h1>
+  <p>
+    Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а у іншому
+    – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням. <br><br>
+    Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+  </p>
+  <script>
+    //1. Вводимо необхідні данні.
+    let object1 = {
+      arrayOfIntegers: [32, 14, 31, 74, 15, 43, 51, 26, 55, 16, 12, 42, 66],
+      getSum: function () {
+        return this.arrayOfIntegers.reduce((prevSum, element) => prevSum + element)
+      },
+    }
+    let object2 = {
+      arrayOfIntegers: [23, 46, 63, 84, 39, 15, 60, 30, 65, 14, 18, 21, 45],
+      getProduct: function (minValue, maxValue) {
+        return this.arrayOfIntegers.reduce((prevProduct, num) => num >= minValue && num <= maxValue ? prevProduct * num : prevProduct, 1)
+      },
+    }
+    let sumObject1 = object1.getSum.call(object2)
+    let prodObject1 = object2.getProduct.call(object1, 3, 20)
+
+    let sumObject2 = object1.getSum.apply(object2)
+    let prodObject2 = object2.getProduct.apply(object1, [3, 20])
+
+    document.write(`<p>1) Сума першого об’єкта = ${object1.getSum()} <br>`)
+    document.write(`2) Добуток першого об’єкта = ${prodObject1} <br>`)
+    document.write(`3) Сума другого об’єкта = ${sumObject1} <br>`)
+    document.write(`2) Добуток другого об’єкта = ${object2.getProduct(5, 15)}</p>`)
+  </script>
+</body>
+
+</html><p>  </p>
