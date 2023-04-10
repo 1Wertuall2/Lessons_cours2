@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      margin: 15px 0;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №3</h1>
+  <img src="../img/image2.jpg" alt="">
+  <h3>Розв'язок</h3>
+  <script>
+    class DateOfEstablishment {
+      #year
+      #month
+      constructor(year, month) {
+        this.year = year
+        this.month = month
+      }
+      get Year() {
+        return this.#year
+      }
+      get Month() {
+        return this.#month
+      }
+      set Year(newYear) {
+        if (newYear <= 0) throw new Error('Рік заснування невірний')
+        this.#year = newYear
+      }
+      set Month(newMonth) {
+        if (newMonth < 1 || newMonth > 12) throw new Error('Місяць заснування невірний')
+        this.#month = newMonth
+      }
+      toString() {
+        return `Рік заснування : ${this.month}. ${this.year}.<br>`
+      }
+    }
+    class Service {
+      #serviceName
+      #price
+      #deadline
+      constructor(serviceName, price, deadline) {
+        this.serviceName = serviceName
+        this.price = price
+        this.deadline = deadline
+      }
+      get ServiceName() {
+        return this.#serviceName
+      }
+      get Price() {
+        return this.#price
+      }
+      get Deadline() {
+        return this.#deadline
+      }
+      set ServiceName(newName) {
+        if (newName.length === 0) throw new Error('Назва послуги невірна')
+        this.#serviceName = newName
+      }
+      set Price(newPrice) {
+        if (newPrice <= 0) throw new Error('Вартість послуги невірна')
+        this.#price = newPrice
+      }
+      set Deadline(newDeadline) {
+        if (newDeadline <= 0) throw new Error('Термін виконання невірний')
+        this.#deadline = newDeadline
+      }
+      toString() {
+        return `Послуга : ${this.serviceName} . Вартість : ${this.price} . Термін виконання : ${this.deadline} д<br>`
+      }
+    }
+    class Branch {
+      #country
+      #city
+      #street
+      #houseNum
+      constructor(country, city, street, house) {
+        this.country = country
+        this.city = city
+        this.street = street
+        this.houseNum = house
+      }
+      get Country() {
+        return this.#country
+      }
+      get City() {
+        return this.#city
+      }
+      get Street() {
+        return this.#street
+      }
+      get HouseNum() {
+        return this.#houseNum
+      }
+      set Country(newCountry) {
+        if (newCountry.length === 0) throw new Error('Назва країни невірна')
+        this.#country = newCountry
+      }
+      set City(newCity) {
+        if (newCity.length === 0) throw new Error('Назва міста невірна')
+        this.#city = newCity
+      }
+      set Street(newStreet) {
+        if (newStreet.length === 0) throw new Error('Назва вулиці невірна')
+        this.#street = newStreet
+      }
+      set HouseNum(newHouse) {
+        if (newHouse <= 0) throw new Error('Номер будинку невірний')
+        this.#houseNum = newHouse
+      }
+      toString() {
+        return `Країна : ${this.country} . Місто : ${this.city} . Вулиця : ${this.street} . Номер будинку : ${this.houseNum}<br>`
+      }
+    }
+    class Firm {
+      #firmName
+      #date
+      #services
+      #branches
+      constructor(firmName, date, services, branches) {
+        this.firmName = firmName
+        this.date = date
+        this.services = services
+        this.branches = branches
+      }
+      get FirmName() {
+        return this.#firmName
+      }
+      get Date() {
+        return this.#date
+      }
+      get Service() {
+        return this.#services
+      }
+      get Branch() {
+        return this.#branches
+      }
+      set FirmName(newName) {
+        if (newName.length === 0) throw new Error('Назва фірми невірна')
+        this.#firmName = newName
+      }
+      set Date(newDate) {
+        if (newDate <= 0) throw new Error('Дата фірми невірна')
+        this.#date = newDate
+      }
+      set Service(newService) {
+        if (newService.length === 0) throw new Error('Дані послуги невірні')
+        this.#services = newService
+      }
+      set Branch(newBranch) {
+        if (newBranch.length === 0) throw new Error('Дані про філіал невірні')
+        this.#branches = newBranch
+      }
+      NumberOfYearsExistenceFirm() {
+        let establishmentYear = new Date().getFullYear()
+        return establishmentYear - this.date.year
+      }
+      AllBranchesInSpecifiedCity(cityValue) {
+        for (let branch of this.branches) {
+          if (branch.city === cityValue) {
+            document.write(`<p>Філіали фірми у даному місті: <br>${branch}</p>`)
+          }
+        }
+      }
+      ServicesPerformedForAmountAndTime(amountValue, timeValue) {
+        for (let service of this.services) {
+          if (service.price <= amountValue && service.deadline <= timeValue)
+            document.write(`<p>Послуги виконані за вказану суму та час: <br>${service}</p>`)
+        }
+      }
+      toString() {
+        return `<p>Назва фірми : ${this.firmName}<br><br> Час існування фірми : ${this.NumberOfYearsExistenceFirm()}<br><br> Філіали фірми :<br> ${this.branches}<br> Послуги :<br> ${this.services}<br></p>`
+      }
+    }
+
+    const date = new DateOfEstablishment(2016, 3)
+    const service = [
+      new Service('Верстка лендінга', 150, 4),
+      new Service('Верстка сайта', 500, 10),
+      new Service('Верстка магазина', 1000, 25)
+    ]
+    const branch = [
+      new Branch('Україна', 'Харків', 'Сумська', 36),
+      new Branch('Україна', 'Київ', 'Набережна', 127),
+      new Branch('Україна', 'Вінниця', 'Вінниченка', 33),
+      new Branch('Україна', 'Харків', 'Шевченка', 54)
+    ]
+    const firm = new Firm('Верстальник', date, service, branch)
+    document.write(firm)
+    firm.AllBranchesInSpecifiedCity('Харків')
+    firm.ServicesPerformedForAmountAndTime(600, 20)
+
+  </script>
+</body>
+
+</html>

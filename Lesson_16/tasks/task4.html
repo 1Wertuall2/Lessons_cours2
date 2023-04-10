@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      margin: 5px 0;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №4</h1>
+  <p>
+    Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості купюр
+    кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може
+    видати банкомат, та метод зняття деякої суми.
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    class Bills {
+      #bill
+      #number
+      constructor(bill, number) {
+        this.bill = bill
+        this.number = number
+      }
+      get Bill() {
+        return this.#bill
+      }
+      get Number() {
+        return this.#number
+      }
+      set Bill(newBill) {
+        if (newBill <= 0) throw new Error('Номінал купюри невірний')
+        this.#bill = newBill
+      }
+      set Number(newNumber) {
+        if (newNumber <= 0) throw new Error('Кількість купюр невірниа')
+        this.#number = newNumber
+      }
+      toString() {
+        return `${this.bill} - ${this.number}`
+      }
+    }
+    class TBankomat {
+      constructor(bills) {
+        this.bills = bills
+      }
+      MaximumAmountAnATM() {
+        let maxSum = 0
+        for (let num of this.bills) {
+          if (num.number > 0)
+            maxSum += num.bill * num.number
+        }
+        return maxSum
+      }
+      MinimumAmountAnATM() {
+        for (const num of this.bills) {
+          if (num.number > 0)
+            return num.bill
+        }
+      }
+      MethodOfWithdrawingSomeAmount(methodNum) {
+        let someAmount
+        if (methodNum <= this.MaximumAmountAnATM())
+          someAmount = this.MaximumAmountAnATM() - methodNum
+        return someAmount
+      }
+      toString() {
+        return `<p>Мінімальна сума в банкоматі : ${this.MinimumAmountAnATM()}<br>Максимальна сума в банкоматі : ${this.MaximumAmountAnATM()}</p>`
+      }
+    }
+    const bills = [
+      new Bills(5, 150),
+      new Bills(10, 120),
+      new Bills(20, 100),
+      new Bills(50, 100),
+      new Bills(100, 80),
+      new Bills(200, 60),
+    ]
+    const tBankomat = new TBankomat(bills)
+    document.write(tBankomat)
+    document.write(`<p>Метод зняття деякої суми : ${tBankomat.MaximumAmountAnATM()} - 500 = ${tBankomat.MethodOfWithdrawingSomeAmount(500)}</p>`)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 700px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №2</h1>
+  <p>
+    Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту.
+    Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара,
+    при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    class TMoney {
+      #dollarRate
+      #dollarUserSum
+      constructor(dollarRate, dollarUserSum) {
+        this.dollarRate = dollarRate
+        this.dollarUserSum = dollarUserSum
+      }
+      get DollarRate() {
+        return this.#dollarRate
+      }
+      get DollarUserSum() {
+        return this.#dollarUserSum
+      }
+      set DollarRate(newValue) {
+        this.#dollarRate = newValue
+      }
+      set DollarUserSum(newValue) {
+        this.#dollarUserSum = Math.round((newValue / this.#dollarUserSum) * 100) / 100
+      }
+      GrivnaToDollar(grivnaValue) {
+        return grivnaValue * this.dollarRate
+      }
+      BalanceInGrivna() {
+        return this.GrivnaToDollar(this.dollarUserSum)
+      }
+      AddGrivna(grivnaValue) {
+        return this.dollarUserSum += grivnaValue / this.dollarRate
+      }
+      TakeGrivna(grivnaValue) {
+        return this.dollarUserSum -= grivnaValue / this.dollarRate
+      }
+      PlusOneHundred(){
+        return this.dollarRate = this.dollarRate + ( 100 / this.dollarUserSum)
+      }
+      toString() {
+        return `Курс долара : <span>${this.dollarRate.toFixed(3)} грн</span><br>Баланс у доларі : <span>${this.dollarUserSum.toFixed(2)} $</span><br>Баланс у гривні : <span>${Math.round(this.BalanceInGrivna())} грн</span>`
+      }
+    }
+    const userMoney = new TMoney(39, 300)
+    document.write(`<p>Початкове значення : <br>${userMoney}</p>`)
+    userMoney.AddGrivna(3000)
+    document.write(`<p>Додавання суми у гривні : <br>${userMoney}</p>`)
+    userMoney.TakeGrivna(5000)
+    document.write(`<p>Вилучення суми у гривні : <br>${userMoney}</p>`)
+    userMoney.PlusOneHundred()
+    document.write(`<p>Збільшиться на 100 у гривні : <br>${userMoney}</p>`)
+  </script>
+</body>
+
+</html>
