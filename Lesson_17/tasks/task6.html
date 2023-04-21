@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №6</h1>
+  <p>
+    Дано два класи MultChecker (клас для перевірки таблиці множення - рандомно генеруються числа, які треба
+    перемножати), AddChecker (клас для перевірки додавання - рандомно генеруються числа у заданому діапазоні, які
+    треба додавати). Обидва класи надсилають результати тестування об'єкту класу Hystory, який зберігає історію
+    тестування у масиві у вигляді об'єктів
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    class MultChecker {
+      constructor(firstNum, secondNum) {
+        this.firstNum = firstNum
+        this.secondNum = secondNum
+        this.correctAnswer = firstNum * secondNum
+        this.history = new History()
+      }
+      test() {
+        this.userAnswer = parseInt(prompt(`${this.firstNum} * ${this.secondNum} =`))
+        this.history.addTestResult({ firstNum: this.firstNum, secondNum: this.secondNum, opration: '*', correctAnswer: this.correctAnswer, userAnswer: this.userAnswer })
+      }
+    }
+    class AddChecker {
+      constructor(firstNum, secondNum) {
+        this.firstNum = firstNum
+        this.secondNum = secondNum
+        this.correctAnswer = firstNum + secondNum
+        this.history = new History()
+      }
+      test() {
+        this.userAnswer = parseInt(prompt(`${this.firstNum} + ${this.secondNum} =`))
+        this.history.addTestResult({ firstNum: this.firstNum, secondNum: this.secondNum, opration: '+',correctAnswer: this.correctAnswer, userAnswer: this.userAnswer})
+      }
+    }
+    class TestData {
+      constructor(minNum, maxNum) {
+        this.minNum = minNum
+        this.maxNum = maxNum
+        this.firstNum = this.RandomNum(minNum, maxNum)
+        this.secondNum = this.RandomNum(minNum, maxNum)
+      }
+      RandomNum(minNum, maxNum) {
+        return minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+      }
+      RandomTest() {
+        const randomNum = this.RandomNum(0, 1)
+        randomNum === 0 ? new MultChecker(this.firstNum, this.secondNum).test() : new AddChecker(this.firstNum, this.secondNum).test()
+      }
+    }
+    class History {
+      static historyRef
+      static historyList = []
+      constructor() {
+        if (History.historyRef)
+          return History.historyRef
+        History.historyRef = this
+      }
+      addTestResult(testResData) {
+        History.historyList.push(testResData)
+      }
+      toString() {
+        return `${History.historyList}`
+      }
+    }
+    class TestManager {
+      constructor(minNum = 1, maxNum = 15, numberOfTests = 6, seconds = 1) {
+        this.minNum = minNum
+        this.maxNum = maxNum
+        this.numberOfTests = numberOfTests
+        this.seconds = seconds
+        this.counter = 0
+      }
+      startTest() {
+        if (this.counter < this.numberOfTests) {
+          setTimeout(() => {
+            new TestData(this.minNum, this.maxNum).RandomTest()
+            this.counter++
+            this.startTest()
+          }, this.seconds * 1000)
+        } else {
+          this.printResult()
+          this.counter = 0
+        }
+      }
+      printResult() {
+        document.write(JSON.stringify(History.historyList))
+        console.log(History.historyList)
+      }
+    }
+    const test = new TestManager()
+    test.startTest()
+  </script>
+</body>
+
+</html>

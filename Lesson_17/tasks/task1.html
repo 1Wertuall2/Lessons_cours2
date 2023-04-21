@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    span {
+      color: red;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №1</h1>
+  <p>
+    Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості
+    від’ємних, кількість входжень деякого числа (статичні методи)
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    // Вводимо необхідні данні.
+    class ArrayOperations {
+      static numberOfPositive(array) {
+        return array.reduce((prevNum, el) => el > 0 ? prevNum + 1 : prevNum, 0)
+      }
+      static numberOfNegative(array) {
+        return array.reduce((prevNum, el) => el < 0 ? prevNum + 1 : prevNum, 0)
+      }
+      static occurrencesOfSomeNumber(array, number) {
+        return array.reduce((prevNum, el) => el === number ? prevNum + 1 : prevNum, 0)
+      }
+    }
+    const array = [2, 12, -4, 7, -15, 7, -5, 12, 8, -10, -2, 10, 4, -1, 14, 2]
+    document.write(`<p>Кількість додатніх : ${ArrayOperations.numberOfPositive(array)}</p>`)
+    document.write(`<p>Кількість від’ємних : ${ArrayOperations.numberOfNegative(array)}</p>`)
+    document.write(`<p>Кількість входжень деякого числа : ${ArrayOperations.occurrencesOfSomeNumber(array, 2)}</p>`)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №4</h1>
+  <p>
+    Склад. База товарів, які зберігаються на складі: назва товару, одиниця виміру, кількість, фірма виробник (назва,
+    реєстраційний номер). Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару, фільтрація за
+    назвою фірми.
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    class ManufacturerCompany {
+      constructor(companyName, registrationNum) {
+        this.companyName = companyName
+        this.registrationNum = registrationNum
+      }
+      toString() {
+        return `${this.companyName}, ${this.registrationNum}`
+      }
+    }
+    class BaseOfGoods {
+      constructor(productName, unit, quantity, companyName, registrationNum) {
+        this.productName = productName
+        this.unit = unit
+        this.quantity = quantity
+        this.manufacturerCompany = new ManufacturerCompany(companyName, registrationNum)
+      }
+      toString() {
+        return `<p>Назва товару : ${this.productName}<br> Одиниця виміру : ${this.unit}<br> Кількість : ${this.quantity}<br> Фірма виробник : ${this.manufacturerCompany}<br></p>`
+      }
+    }
+    class Storage {
+      constructor(goods) {
+        this.goods = goods
+      }
+      registrationOfGoods(product) {
+        this.goods.push(product)
+      }
+      shipmentOfGoods(goodsName, goodsQuantity) {
+        for (const product of this.goods) {
+          if (product.productName === goodsName)
+            if (product.quantity > 0) {
+              product.quantity -= goodsQuantity
+            }
+        }
+        return this.goods
+      }
+      filteringByProductName(goodsName) {
+        return this.goods.filter(element => element.productName === goodsName)
+      }
+      filteringByManufacturer(companyName) {
+        return this.goods.filter(element => element.manufacturerCompany.companyName === companyName)
+      }
+    }
+
+    const baseOfGoods = [
+      new BaseOfGoods('Шпаклівка', 'кг', '40', 'Knauf', '23517'),
+      new BaseOfGoods('Плитка', 'кг', '120', 'Cersanit', '57297'),
+      new BaseOfGoods('Шпалери', 'шт', '62', 'Desire', '38103'),
+      new BaseOfGoods('Килим', 'шт', '30', 'Onix', '74924'),
+      new BaseOfGoods('Цемент', 'кг', '57', 'Knauf', '97402')
+    ]
+    const storage = new Storage(baseOfGoods)
+    console.log(storage.shipmentOfGoods('Шпаклівка', 10))
+    console.log(storage.filteringByProductName('Плитка'))
+    console.log(storage.filteringByManufacturer('Knauf'))
+    document.write(storage.filteringByProductName('Плитка'))
+    document.write(storage.filteringByManufacturer('Knauf'))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №5</h1>
+  <p>
+    Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис),
+    назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки
+    (спеціальна література, хобі, домашнє господарство і т.д.), походження книги і наявність на даний час.
+    Організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за видавництвом.
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    class Author {
+      constructor({ authorName, yearOfBirth, briefDescription }) {
+        this.authorName = authorName
+        this.yearOfBirth = yearOfBirth
+        this.briefDescription = briefDescription
+      }
+      toString() {
+        return `<p>Автор : ${this.authorName} <br> Рік народження : ${this.yearOfBirth} <br> Короткий опис : ${this.briefDescription}</p>`
+      }
+    }
+    class Publishing {
+      constructor({ publishing, registrationNumber, yearOfIntroduction }) {
+        this.publishing = publishing
+        this.registrationNumber = registrationNumber
+        this.yearOfIntroduction = yearOfIntroduction
+      }
+      toString() {
+        return `<p>Видавництво : ${this.publishing} <br> Реєстраційний номер : ${this.registrationNumber} <br> Рік засування : ${this.yearOfIntroduction}</p>`
+      }
+    }
+    class Book {
+      constructor(bookData) {
+        this.authors = new Author(bookData)
+        this.bookTitle = bookData.bookTitle
+        this.bookGenre = bookData.bookGenre
+        this.bookAvailability = bookData.bookAvailability
+        this.bookOrigin = bookData.bookOrigin
+        this.publisher = new Publishing(bookData)
+      }
+      toString() {
+        return `${this.authors}<p>Назва книги : ${this.bookTitle}<br>Жанр : ${this.bookGenre}<br>Наявність на даний час : ${this.bookAvailability}<br>Походження книги : ${this.bookOrigin}</p>${this.publisher}`
+      }
+    }
+    class Library {
+      constructor(booksArr) {
+        this.booksArr = booksArr
+      }
+      LibrarySections(selectedGenre) {
+        this.booksArr = this.booksArr.filter(book => book.bookGenre === selectedGenre)
+      }
+      OriginOfTheBook(selectedOrigin) {
+        this.booksArr = this.booksArr.filter(book => book.bookOrigin === selectedOrigin)
+      }
+      CurrentlyAvailable(selectedAvailability) {
+        this.booksArr = this.booksArr.filter(book => book.bookAvailability === selectedAvailability)
+      }
+      AddBook(selectedBook) {
+        this.booksArr.push(selectedBook)
+      }
+      RemoveBook(selectedBook) {
+        this.booksArr = this.booksArr.filter(book => book.bookTitle !== selectedBook)
+      }
+      SelectionOfBooksByTitle(selectedByName) {
+        this.booksArr = this.booksArr.filter(book => book.bookTitle === selectedByName)
+      }
+      ByTheAuthorsName(selectedByAuthor) {
+        this.booksArr = this.booksArr.filter(book => book.authors.authorName === selectedByAuthor)
+      }
+      AccordingToThePublisher(selectedByblisher) {
+        this.booksArr = this.booksArr.filter(book => book.publisher.publishing === selectedByblisher)
+      }
+      toString() {
+        return `${this.booksArr}`
+      }
+    }
+    const booksArray = [
+      new Book({
+        authorName: 'Тарас Шевченко',
+        yearOfBirth: '1814',
+        briefDescription: 'Український поет, прозаїк, мислитель, живописець, гравер, етнограф, громадський діяч. Національний герой і символ України',
+        bookTitle: 'Кобзар',
+        bookGenre: 'Поезія',
+        publishing: 'Приватна друкарня Є.Ф.Фішера',
+        registrationNumber: '341',
+        yearOfIntroduction: '1820',
+        bookAvailability: 'В наявності',
+        bookOrigin: 'Подарована',
+      }),
+      new Book({
+        authorName: 'Іван Котляревський',
+        yearOfBirth: '1769',
+        briefDescription: 'Український письменник, військовий, класик нової української літератури, громадський діяч',
+        bookTitle: 'Енеїда',
+        bookGenre: 'Поема',
+        publishing: 'Типографія Харківського Університету',
+        registrationNumber: '483',
+        yearOfIntroduction: '1805',
+        bookAvailability: 'Відсутня',
+        bookOrigin: 'Куплена',
+      }),
+      new Book({
+        authorName: 'Ліна Костенко',
+        yearOfBirth: '1930',
+        briefDescription: 'Українська поетеса-шістдесятниця, письменниця (історичний роман, твори для дітей), дисидент.',
+        bookTitle: 'Маруся Чурай',
+        bookGenre: 'Роман',
+        publishing: 'А-ба-ба-га-ла-ма-га',
+        registrationNumber: '562',
+        yearOfIntroduction: '1992',
+        bookAvailability: 'В наявності',
+        bookOrigin: 'Вкрадена',
+      }),
+      new Book({
+        authorName: 'Леся Українка',
+        yearOfBirth: '1871',
+        briefDescription: 'Українська письменниця, перекладачка та культурна діячка, співзасновниця літературного гуртка «Плеяда» та групи Українська соціал-демократія.',
+        bookTitle: 'Лісова пісня',
+        bookGenre: 'Драма-феєрія',
+        publishing: 'Літературно-науковий вістник',
+        registrationNumber: '941',
+        yearOfIntroduction: '1898',
+        bookAvailability: 'Відсутня',
+        bookOrigin: 'Подарована',
+      }),
+      new Book({
+        authorName: 'Іван Нечуй-Левицький',
+        yearOfBirth: '1838',
+        briefDescription: 'Український письменник, етнограф, фольклорист, педагог.',
+        bookTitle: 'Кайдашева Сім’я',
+        bookGenre: 'Повість',
+        publishing: 'Правда',
+        registrationNumber: '273',
+        yearOfIntroduction: '1867',
+        bookAvailability: 'В наявності',
+        bookOrigin: 'Куплена',
+      }),
+    ]
+    const book = new Library(booksArray)
+    document.write(book)
+    //book.RemoveBook('Енеїда')
+    //book.LibrarySections('Роман')
+    //book.OriginOfTheBook('Вкрадена')
+    //book.CurrentlyAvailable('В наявності')
+    //book.SelectionOfBooksByTitle('Кобзар')
+    //book.ByTheAuthorsName('Іван Котляревський')
+    //book.AccordingToThePublisher('А-ба-ба-га-ла-ма-га')
+    console.log(book)
+  </script>
+</body>
+
+</html>

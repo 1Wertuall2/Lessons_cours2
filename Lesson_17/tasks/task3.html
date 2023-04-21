@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      background: linear-gradient(#C6F8DD, #0FFF78, #02E8D7);
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(31, 27, 58);
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №3</h1>
+  <p>
+    Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує про якусь
+    подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування було. Зробити так, щоб
+    неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки таймера, метод зміни повідомлення
+    без зупинки таймера.
+  </p>
+  <h3>Розв'язок</h3>
+  <script>
+    class Reminder {
+      static presentInterval
+      constructor(message, intervalValue) {
+        if (Reminder.presentInterval) return Reminder.presentInterval
+        this.message = message
+        this.intervalValue = intervalValue
+        Reminder.presentInterval = this
+      }
+      start() {
+        let counter = 0
+        Reminder.presentInterval = setInterval(() => {
+          counter = counter + 1
+          document.write(`<p>${this.message} № ${counter}</p>`)
+        }, this.intervalValue * 1000)
+      }
+      stop() {
+        setTimeout(() => {
+          clearInterval(Reminder.presentInterval)
+        }, 30000)
+      }
+      changeMessage(value) {
+        setTimeout(() => {
+          this.message = value
+        }, 10000)
+      }
+    }
+    let reminder = new Reminder('Привіт!', 3)
+    reminder.stop()
+    reminder.start()
+    reminder.changeMessage('Бувай!')
+  </script>
+</body>
+
+</html>
