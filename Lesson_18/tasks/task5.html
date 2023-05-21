@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5</title>
+  <style>
+    body {
+      background: linear-gradient(90deg, #C6F8DD, #0FFF78, #02E8D7);
+      max-width: 550px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(29, 23, 68);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+
+    }
+
+    .table {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    table {
+      background: #eeaadf;
+      border: 5px solid #1a2b7c;
+    }
+
+    td,
+    tr {
+      text-align: center;
+      border: 3px solid #3250e6;
+      padding: 3px;
+      font-size: 36px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Задача №5</h1>
+  <p>
+    Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+  </p>
+  <div id="table"></div>
+  <script>
+    function getTable() {
+      let table = document.createElement('table')
+      for (let i = 0; i < 3; i++) {
+        let tr = document.createElement('tr')
+        for (let i = 0; i < 4; i++) {
+          let td = document.createElement('td')
+          const randomNumber = 1 + Math.floor(Math.random() * (50 - 1 + 1))
+          td.append(randomNumber)
+          tr.append(td)
+          table.append(tr)
+        }
+      }
+      document.getElementById('table').append(table)
+    }
+    window.onload = getTable
+  </script>
+</body>
+
+</html>

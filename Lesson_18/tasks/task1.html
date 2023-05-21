@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <style>
+    body {
+      background: linear-gradient(90deg, #C6F8DD, #0FFF78, #02E8D7);
+      max-width: 500px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+    p {
+      font-size: 26px;
+      color: rgb(29, 23, 68);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .calculator {
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      border: 2px solid #176636;
+      box-shadow: 3px 3px 8px black;
+      padding: 15px;
+    }
+    .item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .item:not(:last-child){
+      margin-bottom: 15px;
+    }
+    .label{
+      font-size: 26px;
+    }
+    .input {
+      text-align: center;
+      font-size: 20px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: rgb(255, 0, 0, 0.1);
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .button {
+      font-size: 20px;
+      width: 48.9%;
+      padding: 5px;
+      cursor: pointer;
+      display: block;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+      color: rgba(61, 26, 51, 0.781);
+      background: none;
+      border: 2px solid currentColor;
+      border-radius: 5px;
+    }
+    .button span {
+      font-weight: 900;
+      color: rgba(38, 0, 255, 0.795);
+    }
+    .button:before,
+    .button:after {
+      content: "";
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      background: rgba(204, 156, 216, 0.726);
+      transition: transform 1s;
+      will-change: transform;
+    }
+    .button:before {
+      left: -100%;
+    }
+    .button:after {
+      left: 100%;
+    }
+    .button:hover:before {
+      transform: translateX(100%);
+    }
+    .button:hover:after {
+      transform: translateX(-100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>Задача №1</h1>
+    <p>
+      Розробити калькулятор
+    </p>
+    <div class="container">
+      <div class="item">
+        <label class="label" for="number1">Перше число</label>
+        <input class="input" type="number" id="number1" >
+      </div>
+      <div class="item">
+        <label class="label" for="number2">Друге число</label>
+        <input class="input" type="number" id="number2" >
+      </div>
+      <div class="buttons"> 
+        <button id="add" class="button"><span>Додати</span></button>
+        <button id="take-away" class="button"><span>Відняти</span></button>
+        <button id="multiply" class="button"><span>Помножити</span></button>
+        <button id="division" class="button"><span>Поділити</span></button>
+      </div>
+      <div class="item">
+        <label class="label" for="result">Результат</label>
+        <input class="input" type="text" id="result" >
+      </div>
+    </div>
+  </div>
+  <script>
+    function sum() {
+      let num1 = parseFloat(document.getElementById('number1').value)
+      let num2 = parseFloat(document.getElementById('number2').value)
+      let sum = num1 + num2
+      document.getElementById('result').value = sum
+    }
+
+    function minus() {
+      let num1 = parseFloat(document.getElementById('number1').value)
+      let num2 = parseFloat(document.getElementById('number2').value)
+      let minus = num1 - num2
+      document.getElementById('result').value = minus
+    }
+
+    function multiply() {
+      let num1 = parseFloat(document.getElementById('number1').value)
+      let num2 = parseFloat(document.getElementById('number2').value)
+      let multiply = num1 * num2
+      document.getElementById('result').value = multiply
+    }
+
+    function division() {
+      let num1 = parseFloat(document.getElementById('number1').value)
+      let num2 = parseFloat(document.getElementById('number2').value)
+      let division = num1 / num2
+      document.getElementById('result').value = division.toFixed(2)
+    }
+
+    window.onload = function () {
+      document.documentElement.classList.add('loaded')
+      document.getElementById('add').onclick = sum
+      document.getElementById('take-away').onclick = minus
+      document.getElementById('multiply').onclick = multiply
+      document.getElementById('division').onclick = division
+    }
+  </script>
+</body>
+
+</html>

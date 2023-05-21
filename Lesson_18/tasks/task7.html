@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/common.css">
+  <title>Task 7</title>
+</head>
+
+<body>
+  <div class="travel-box">
+    <h1>Задача №7</h1>
+    <p>
+      Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто, автобус,
+      літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати -
+      radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+    </p>
+    <div class="container">
+      <div class="transport">
+        <h2>Транспорт</h2>
+        <select class="transport__inner" id="transport">
+          <option value="200">Авто</option>
+          <option value="100">Автобус</option>
+          <option value="400">Літак</option>
+        </select>
+      </div>
+      <div class="food">
+        <h2>Харчування</h2>
+        <div class="food-box">
+          <label class="label">Сніданок</label>
+          <input class="input" type="checkbox" value="100">
+          <label class="label">Обід</label>
+          <input class="input" type="checkbox" value="150">
+          <label class="label">Вечеря</label>
+          <input class="input" type="checkbox" value="200">
+        </div>
+      </div>
+      <div class="guide">
+        <h2>Гіди</h2>
+        <div class="guide-box">
+          <label class="label">Павло</label>
+          <input class="input" type="radio" value="500">
+          <label class="label">Олег</label>
+          <input class="input" type="radio" value="450">
+          <label class="label">Вікторія</label>
+          <input class="input" type="radio" value="700">
+        </div>
+      </div>
+      <div class="button-box">
+        <button class="button" id="сonvert"><span>Загальна вартість подорожі</span></button>
+      </div>
+      <div class="sum" id="sum">
+        Сума :
+      </div>
+    </div>
+  </div>
+  <script>
+    function getCostOfTrip() {
+      let totalCost = 0
+      const transportSum = parseFloat(document.getElementById('transport').value)
+      totalCost += transportSum
+      const inputsSum = document.querySelectorAll('input')
+      for (const input of inputsSum) {
+        if (input.checked)
+          totalCost += parseFloat(input.value)
+      }
+      document.getElementById('sum').innerHTML = totalCost
+    }
+    window.onload = function () {
+      document.getElementById('сonvert').onclick = getCostOfTrip
+    }
+  </script>
+</body>
+
+</html>

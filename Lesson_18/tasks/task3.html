@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <style>
+    body {
+      background: linear-gradient(90deg, #C6F8DD, #0FFF78, #02E8D7);
+      max-width: 550px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 0 10px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 52px;
+      color: blue;
+    }
+
+    h3 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 26px;
+      color: rgb(29, 23, 68);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .calculator {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      border: 2px solid #176636;
+      box-shadow: 3px 3px 8px black;
+      padding: 15px;
+    }
+
+    .item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .item:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    .label {
+      font-size: 26px;
+    }
+
+    .input {
+      text-align: center;
+      font-size: 20px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: rgb(255, 0, 0, 0.1);
+    }
+
+    .input:hover {
+      background-color: rgba(141, 196, 53, 0.493);
+    }
+
+    .inner {
+      display: flex;
+      justify-content: center;
+    }
+
+    .button {
+      font-size: 20px;
+      width: 48.9%;
+      cursor: pointer;
+      display: block;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+
+      margin-bottom: 20px;
+      color: rgba(61, 26, 51, 0.781);
+      background: none;
+      border: 2px solid currentColor;
+      border-radius: 5px;
+    }
+
+    .button span {
+      font-weight: 900;
+      color: rgba(38, 0, 255, 0.795);
+    }
+
+    .button:before,
+    .button:after {
+      content: "";
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      background: rgba(204, 156, 216, 0.726);
+      transition: transform 1s;
+      will-change: transform;
+    }
+
+    .button:before {
+      left: -100%;
+    }
+
+    .button:after {
+      left: 100%;
+    }
+
+    .button:hover:before {
+      transform: translateX(100%);
+    }
+
+    .button:hover:after {
+      transform: translateX(-100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator">
+    <h1>Задача №3</h1>
+    <p>
+      Користувач задає рік народження. Визначити кількість років користувача.
+    </p>
+    <div class="container">
+      <div class="item">
+        <label class="label" for="year">Ваш рік народження</label>
+        <input class="input" type="number" id="year">
+      </div>
+      <div class="inner">
+        <button class="button" id="year-number"><span>Кількість років</span></button>
+      </div>
+      <div class="item">
+        <label class="label" for="age">Ваш вік</label>
+        <input class="input" type="number" id="age">
+      </div>
+    </div>
+  </div>
+  <script>
+    function birthOfYearOfTheUser() {
+      const presentTime = new Date().getFullYear() 
+      const birthOfYear = parseInt(document.getElementById('year').value)
+      const age = presentTime - birthOfYear
+      document.getElementById('age').value = age
+    }
+    window.onload = function () {
+      document.getElementById('year-number').onclick = birthOfYearOfTheUser
+    }
+  </script>
+</body>
+
+</html>
